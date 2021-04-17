@@ -71,6 +71,7 @@ const CharacterList = () => {
   return (
     <div>
       <input
+      className="filter__input"
         id="nameFilterInput"
         value={nameFilter}
         onChange={(e) => {
@@ -78,6 +79,7 @@ const CharacterList = () => {
         }}
       />
       <input
+            className="filter__input"
         id="movieFilterInput"
         value={movieFilter}
         onChange={(e) => {
