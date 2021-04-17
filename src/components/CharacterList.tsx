@@ -9,6 +9,7 @@ const CharacterList = () => {
     loading: boolean;
     next: string;
   }
+
   const characters = useSelector((state: RootState) => state.characters);
   const next = useSelector((state: RootState) => state.next);
   const loading = useSelector((state: RootState) => state.loading);
@@ -22,25 +23,29 @@ const CharacterList = () => {
         type: "CHARACTER_LOADING",
         loading: true,
       });
-      const res = await axios.get(next);
-      const characters = res["data"]["results"];
-      const nextLink = res["data"]["next"];
-      for (const character in characters) {
-        const movieUrls = characters[character]["films"];
-        let movieTitles = [];
-        for (const movieUrl of movieUrls) {
-          const movie = await axios.get(movieUrl);
-          const movieTitle: string = movie["data"]["title"];
-          movieTitles.push(movieTitle);
+      try {
+        const res = await axios.get(next);
+        const characters = res["data"]["results"];
+        const nextLink = res["data"]["next"];
+        for (const character in characters) {
+          const movieUrls = characters[character]["films"];
+          let movieTitles = [];
+          for (const movieUrl of movieUrls) {
+            const movie = await axios.get(movieUrl);
+            const movieTitle: string = movie["data"]["title"];
+            movieTitles.push(movieTitle);
+          }
+          characters[character]["movieTitles"] = movieTitles;
         }
-        characters[character]["movieTitles"] = movieTitles;
+        dispatch({
+          type: "CHARACTER_SET",
+          characters: characters,
+          next: nextLink,
+          loading: false,
+        });
+      } catch (e) {
+        window.alert("Request failed");
       }
-      dispatch({
-        type: "CHARACTER_SET",
-        characters: characters,
-        next: nextLink,
-        loading: false,
-      });
     }
   }
 
@@ -67,25 +72,44 @@ const CharacterList = () => {
 
     return () => window.removeEventListener("load", onLoad);
   });
+    const moveLabel=(labelId: string)=>{
+      const label=document.getElementById(labelId)
+      if(label){
+        label.style.transform="translate(.1rem, -70%) scale(.8)";
+        label.style.zIndex="0";
+        label.style.color="#fdf253";
+      }
+    }
 
   return (
     <div>
-      <input
-      className="filter__input"
-        id="nameFilterInput"
-        value={nameFilter}
-        onChange={(e) => {
-          setNameFilter(e.target.value);
-        }}
-      />
-      <input
-            className="filter__input"
-        id="movieFilterInput"
-        value={movieFilter}
-        onChange={(e) => {
-          setMovieFilter(e.target.value);
-        }}
-      />
+
+      <div className="filter__container">
+      <div className="filter">
+        <div id="nameFilterLabel" className="filter__label">Filter by name</div>
+        <input
+          className="filter__input"
+          id="nameFilterInput"
+          value={nameFilter}
+          onFocus={()=>{moveLabel("nameFilterLabel")}}
+          onChange={(e) => {
+            setNameFilter(e.target.value);
+          }}
+        />
+        </div>
+        <div className="filter">
+        <div id="movieFilterLabel" className="filter__label">Filter by movies</div>
+        <input
+          className="filter__input"
+          id="movieFilterInput"
+          value={movieFilter}
+          onFocus={()=>{moveLabel("movieFilterLabel")}}
+          onChange={(e) => {
+            setMovieFilter(e.target.value);
+          }}
+        />
+        </div>
+      </div>
 
       <table id="table">
         <thead>
