@@ -5,5 +5,5 @@ It shows characters in table, allowing you to fetch more characters by scrolling
 Upon clicking a record in table, you can see additional info about characters.
 You can also filter listed characters by name and by the movies they played in.
 
-App was made using, React.js, Redux and TypeScrypt.
-The live version can be found [here](https://swapi.dev/)
+App was made using, React.js, Redux and TypeScript.
+The live version can be found [here](https://star-wars-character-catalogue.netlify.app/)
