@@ -40,7 +40,7 @@ const Character = ({
           <td colSpan={2}>
             Appeared in:{" "}
             {movieTitles.map((title: string) => (
-              <div>{title}</div>
+              <div key={name + title}>{title}</div>
             ))}
           </td>
         </tr>

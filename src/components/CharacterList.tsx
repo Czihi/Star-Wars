@@ -51,6 +51,17 @@ const CharacterList = () => {
   }
 
   useEffect(() => {
+    if (
+      window.innerHeight + window.scrollY >= document.body.offsetHeight &&
+      !loading
+    ){
+      getCharacters()
+    }
+    return
+  })
+
+
+  useEffect(() => {
     const onScroll = (e: any) => {
       if (
         window.innerHeight + window.scrollY >= document.body.offsetHeight &&
