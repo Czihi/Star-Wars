@@ -25,14 +25,14 @@ const CharacterList = () => {
         loading: true,
       });
       try {
-        const res = await axios.get(next);
+        const res = await axios.get(next.replace("https", "http").replace("http", "https"));
         const characters = res["data"]["results"];
         const nextLink = res["data"]["next"];
         for (const character in characters) {
           const movieUrls = characters[character]["films"];
           let movieTitles = [];
           for (const movieUrl of movieUrls) {
-            const movie = await axios.get(movieUrl);
+            const movie = await axios.get(movieUrl.replace("https", "http").replace("http", "https"));
             const movieTitle: string = movie["data"]["title"];
             movieTitles.push(movieTitle);
           }
