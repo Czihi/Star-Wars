@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 interface CharacterProps {
   name: string;
   gender: string;
   birth_year: string;
   height: number;
   movieTitles: string[];
-  movieFilter: string;
 }
 
 const Character = ({
@@ -14,23 +13,41 @@ const Character = ({
   birth_year,
   height,
   movieTitles,
-  movieFilter,
 }: CharacterProps) => {
   const [showMore, setShowMore] = useState<boolean>(false);
   const showMoreData = () => {
-    console.log("more data");
+    setShowMore(!showMore);
   };
 
   return (
-    <tr
-      onClick={() => {
-        showMoreData();
-      }}
-    >
-      <td>{name}</td>
-      <td>{gender}</td>
-      <td>{birth_year}</td>
-    </tr>
+    <>
+      <tr
+        onClick={() => {
+          showMoreData();
+        }}
+      >
+        <td>{name}</td>
+        <td>{gender}</td>
+        <td>{birth_year}</td>
+      </tr>
+      {showMore ? (
+        <tr
+          onClick={() => {
+            showMoreData();
+          }}
+        >
+          <td>Height: {height}</td>
+          <td colSpan={2}>
+            Appeared in:{" "}
+            {movieTitles.map((title: string) => (
+              <div>{title}</div>
+            ))}
+          </td>
+        </tr>
+      ) : (
+        <></>
+      )}
+    </>
   );
 };
 export default Character;

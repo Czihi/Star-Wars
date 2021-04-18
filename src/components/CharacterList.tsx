@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Character from "./Character";
 import Loader from "./Loader";
+import Filters from "./Filters"
 const CharacterList = () => {
   interface RootState {
     characters: any;
@@ -72,44 +73,16 @@ const CharacterList = () => {
 
     return () => window.removeEventListener("load", onLoad);
   });
-    const moveLabel=(labelId: string)=>{
-      const label=document.getElementById(labelId)
-      if(label){
-        label.style.transform="translate(.1rem, -70%) scale(.8)";
-        label.style.zIndex="0";
-        label.style.color="#fdf253";
-      }
-    }
+
 
   return (
     <div>
-
-      <div className="filter__container">
-      <div className="filter">
-        <div id="nameFilterLabel" className="filter__label">Filter by name</div>
-        <input
-          className="filter__input"
-          id="nameFilterInput"
-          value={nameFilter}
-          onFocus={()=>{moveLabel("nameFilterLabel")}}
-          onChange={(e) => {
-            setNameFilter(e.target.value);
-          }}
-        />
-        </div>
-        <div className="filter">
-        <div id="movieFilterLabel" className="filter__label">Filter by movies</div>
-        <input
-          className="filter__input"
-          id="movieFilterInput"
-          value={movieFilter}
-          onFocus={()=>{moveLabel("movieFilterLabel")}}
-          onChange={(e) => {
-            setMovieFilter(e.target.value);
-          }}
-        />
-        </div>
-      </div>
+      <Filters
+      movieFilter={movieFilter}
+      nameFilter={nameFilter}
+      setMovieFilter={setMovieFilter}
+      setNameFilter={setNameFilter}
+      />
 
       <table id="table">
         <thead>
@@ -138,7 +111,6 @@ const CharacterList = () => {
                   birth_year={character.birth_year}
                   height={character.height}
                   movieTitles={character.movieTitles}
-                  movieFilter={movieFilter}
                 />
               );
             })}

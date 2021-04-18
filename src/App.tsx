@@ -1,14 +1,12 @@
-import React from "react";
 import "./App.css";
 import Logo from "./components/Logo";
 import CharacterList from "./components/CharacterList";
 
-const App: React.FC = () => {
-  
+const App = () => {
   return (
     <div>
       <Logo />
-     <CharacterList/>
+      <CharacterList />
     </div>
   );
 };

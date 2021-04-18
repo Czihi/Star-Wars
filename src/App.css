@@ -1,7 +1,7 @@
 html {
   font-size: 1.2vw;
   color: #fff;
-  font-family: 'Pathway Gothic One', sans-serif;
+  font-family: "Pathway Gothic One", sans-serif;
 }
 body {
   background: #000 url(//cssanimation.rocks/demo/starwars/images/bg.jpg);
@@ -50,22 +50,22 @@ td {
   text-align: left;
   padding: 0.5rem 2rem;
 }
-tr{
-  transition:all 0.3s ease;
+tr {
+  transition: all 0.3s ease;
   box-shadow: inset 0rem 0rem 0.2rem 0.5rem;
 }
-tr:hover{
-  cursor:pointer;
+tr:hover {
+  cursor: pointer;
   box-shadow: inset 0 0 0 0;
 }
 thead > tr {
   color: #000;
 }
 tbody:before {
-  line-height:2rem;
-  content:".";
-  color:white;
-  display:block;
+  line-height: 2rem;
+  content: ".";
+  color: white;
+  display: block;
 }
 
 tbody > tr {
@@ -77,10 +77,10 @@ tbody > tr:nth-child(odd) {
   background-color: #fdf253;
   box-shadow: inset 0rem 0rem 0.2rem 0.5rem;
 }
-tbody > tr:nth-child(odd):hover{
+tbody > tr:nth-child(odd):hover {
   box-shadow: inset 0 0 0 0;
 }
-.filter__container{
+.filter__container {
   margin: 1rem -1rem;
   width: 70%;
   margin-left: auto;
@@ -90,22 +90,22 @@ tbody > tr:nth-child(odd):hover{
   flex-direction: row;
   justify-content: space-between;
 }
-.filter{
+.filter {
   flex: 1 1;
 }
-.filter__label{
+.filter__label {
   z-index: -1;
-  position:relative;
-  left:2rem;
-  top:2.2rem;
+  position: relative;
+  left: 2rem;
+  top: 2.2rem;
   color: #fff;
   background-color: #000;
   font-size: 1.5rem;
   transition: 0.5s;
-  display:inline-block;
+  display: inline-block;
 }
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
+input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,
@@ -116,10 +116,11 @@ select:-webkit-autofill:focus {
   border: 1px solid white;
   -webkit-text-fill-color: white;
   -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  box-shadow: 0 0 0px 1000px transparent inset;
   transition: background-color 1000000s ease-in-out 0s;
 }
-.filter__input{
-  font-family: 'Pathway Gothic One', sans-serif;
+.filter__input {
+  font-family: "Pathway Gothic One", sans-serif;
   padding: 0.2rem 0;
   padding-left: 1.5rem;
   display: inline-block;
